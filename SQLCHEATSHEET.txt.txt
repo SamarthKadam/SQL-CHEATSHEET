@@ -79,7 +79,14 @@ IS NULL
 SELECT * from customers where phone is null                    //Get all customers where phone is null
 SELECT * from customers where phone is not null                //Get all customers where phone is not null
 
-
+ORDER BY
+SELECT * from customers order by first_name desc              //Select all the customers firstname by descending order default it is ascending order
+SELECT * from customers order by first_name,last_name         //Select all the customers firstname by asceding order, if first_name is same then go through last_name asceding order
+ 
+LIMIT
+limit the data like
+SELECT * FROM customers limit 3                               //We would only get 3 data
+SELECT * FROM customers limit 6,3                             //Here we would skip 6 documents and get next 3 docs
 
 
 
