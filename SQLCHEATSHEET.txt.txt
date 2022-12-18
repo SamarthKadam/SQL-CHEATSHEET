@@ -1,0 +1,88 @@
+What is SQL?
+SQL stands for Structured Query Language
+SQL lets you access and manipulate databases
+SQL became a standard of the American National Standards Institute (ANSI) in 1986, and of the International Organization for Standardization (ISO) in 1987
+
+
+What Can SQL do?
+SQL can execute queries against a database
+SQL can retrieve data from a database
+SQL can insert records in a database
+SQL can update records in a database
+SQL can delete records from a database
+SQL can create new databases
+SQL can create new tables in a database
+SQL can create stored procedures in a database
+SQL can create views in a database
+SQL can set permissions on tables, procedures, and views
+
+Using SQL in Your Web Site
+To build a web site that shows data from a database, you will need:
+
+An RDBMS database program (i.e. MS Access, SQL Server, MySQL)
+To use a server-side scripting language, like PHP or ASP
+To use SQL to get the data you want
+To use HTML / CSS to style the page
+
+Basic Query looks like this:
+SELECT * FROM EMPLOYEE WHERE ID=2 ORDER BY first_name
+
+SELECT:
+SELECT * FROM customers                                             ///Selects every column from the customers table
+SELECT first_name,last_name,points*10 as increPoints from customers ///Selects only specified column and values can be modified and also named something different using AS
+SELECT DISTINCT state from customers                                ///Does not allow duplicates of mentioned field that is state
+
+WHERE:
+We can have many operaters that can be used beside where.Some of them are
+>
+<
+>=
+<=
+!= or <>
+SELECT * from customers where birth_date>'1987-01-01'
+
+AND,OR,NOT
+SELECT * from customers where state='VA' or points>=2000
+
+IN 
+SELECT * from customers where state='VA' or state='CO'
+instead of going with above statements in makes it easy.We can say like it is for the OR elimination
+SELECT * from customers where state IN ('VA','CO')
+
+BETWEEN
+SELECT * from customers where points>=1000 AND points<=2000
+instead of going with above statements between makes it easy.We can say like it is for the AND elimination
+SELECT * from customers where points BETWEEN 1000 AND 2000
+
+LIKE
+It is used for matching string like ends with, starts with, contains like statements some of the examples are
+SELECT * from customers where first_name like'%y'                    ///Get all customers where last_name end with y
+SELECT * from customers where first_name like'y%'                    //Get all customers where last_name start with y
+SELECT * FROM customers where first_name like '%y%'                  //Get  all the customers where last_name contains y in the middle
+
+Or we can also have statements like
+SELECT * FROM customers where first_name like '_____y'                ///Get all the attr where first_name contains 6 letters where ending letter is y
+
+
+REGEXP
+We can use regexp as these are powerful when we are working with strings
+
+SELECT * from customers where last_name regexp '^B'             ///Get all the customers whose lastname starts with b
+SELECT * from customers where last_name regexp 'y$'             ///Get all the customers whose lastname ends with y
+SELECT * from customers where last_name regexp 'oa|se'          ///Get all the customers which contain consectives oa or se
+SELECT * from customers where last_name regexp '^bo|ay$'        ///Get all the customers which stars with bo or ends with ay
+SELECT * from customers where last_name regexp '[oa]g'          //Get all the customers where last_name has O or A preceding g
+SELECT * from customers where last_name regexp '[a-h]g          //Get all the customers where last_name has A-H preceding g
+
+
+IS NULL
+SELECT * from customers where phone is null                    //Get all customers where phone is null
+SELECT * from customers where phone is not null                //Get all customers where phone is not null
+
+
+
+
+
+
+
+
