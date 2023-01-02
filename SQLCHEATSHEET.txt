@@ -89,7 +89,53 @@ SELECT * FROM customers limit 3                               //We would only ge
 SELECT * FROM customers limit 6,3                             //Here we would skip 6 documents and get next 3 docs
 
 
+INNER JOIN OR JOIN
+It is used for joining two or more tables for example Consider the query
+SELECT P.product_id,P.name,OA.quantity,OA.unit_price FROM order_items OA join products P where OA.product_id=P.product_id
+Above query joins the order_items table and products table
+
+SELF JOIN
+It is used to join same tables that is to refer the same table
+SELECT E.first_name,M.first_name FROM  employees E join employees M where E.reports_to=M.employee_id
+Above query is used to get all the managers
+
+JOIN more then one table:
+instead of where use on in this case like example
+select P.payment_id,C.name,PM.name from payments P join clients C on P.client_id=C.client_id join payment_methods PM on P.payment_method=PM.payment_method_id
+
+*In some of the tables we have two composition of 2 id's for recognition of the one of the tupple . This is called composite keys
+select * from order_item_notes OIN join order_items OI on OIN.order_id=OI.order_id AND OIN.product_id=OIN.product_id;
+
+IMPLICIT JOIN
+Where you don't need to join. for exampel query can be like
+SELECT * FROM cutomers,orders where customers.order_id=order.order_id;
+
+
+OUTER JOIN (LEFT JOIN OR RIGHT JOIN)
+It is about getting all the data from it doesn't matter wheather there is match or not but we need the data.
+Syntax is like this:
+select P.product_id,P.name,OI.quantity from products P left join order_items OI on P.product_id=OI.product_id;
 
 
 
+OUTER JOIN using MULTIPLE TIMES
+select O.order_date,O.order_id,C.first_name,S.name,OS.name from customers C join orders O on C.customer_id=O.customer_id left join shippers S on S.shipper_id=O.shipper_id join order_statuses OS on OS.order_status_id=O.status; 
+(*understand one crux)
 
+*SELF OUTER JOIN
+select E.first_name, M.first_name from employees E left join employees M on E.reports_to=M.employee_id;
+
+USING
+If you are comparing two id when joining instead of writing the condition like on P.customer_id=Q.customer_id we can write USING(customer_id)
+select P.date,C.name, P.amount,PM.name from clients C join payments P using (client_id) join payment_methods PM on PM.payment_method_id=P.payment_method;
+
+
+NATURAL JOIN
+The database decides on what basis or on what colums basis should it be joined 
+select o.order_id,c.first_name from orders o natural join customers c;
+
+CROSS JOIN
+It is used to join every item to other item like 0(n2)
+
+UNION
+It is used to join two queries like it can be used between two select statements. No of colums in both should be same or else it would throw error.
